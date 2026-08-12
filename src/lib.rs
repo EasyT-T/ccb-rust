@@ -20,7 +20,7 @@ pub extern "C" fn load_ccb() -> bool{
         }
     };
 
-    let fn_lolader = match context.get_delegate_loader_for_assembly(common::assembly_path()) {
+    let fn_loader = match context.get_delegate_loader_for_assembly(common::assembly_path()) {
         Ok(fn_lolader) => fn_lolader,
         Err(e) => {
             eprintln!("Can't get delegate loader for assembly: {e}");
@@ -28,7 +28,7 @@ pub extern "C" fn load_ccb() -> bool{
         }
     };
 
-    common::CLR_FUNCTION_LOADER.set(fn_lolader).unwrap_or_else(|_| panic!("Unable to set the CLR_FUNCTION_LOADER"));
+    common::CLR_FUNCTION_LOADER.set(fn_loader).unwrap_or_else(|_| panic!("Unable to set the CLR_FUNCTION_LOADER"));
 
     true
 }
