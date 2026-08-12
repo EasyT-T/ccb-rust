@@ -1,0 +1,7 @@
+[package]
+name = "ccb"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+netcorehost = "0.22.0"
