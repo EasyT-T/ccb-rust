@@ -81,7 +81,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "ccb"
+name = "ccb-rust"
 version = "0.1.0"
 dependencies = [
  "netcorehost",
