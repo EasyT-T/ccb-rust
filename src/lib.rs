@@ -27,9 +27,16 @@ pub extern "C" fn load_ccb() -> bool{
             return false;
         }
     };
+    
+    let function = fn_loader.get_function_with_unmanaged_callers_only::<fn()>(
+        netcorehost::pdcstr!("CCB.Internal.Interop"),
+        netcorehost::pdcstr!("Load"))
+        .expect("Unable to invoke CCB::Internal::Interop::Load()");
+    
+    function();
 
     common::CLR_FUNCTION_LOADER.set(fn_loader).unwrap_or_else(|_| panic!("Unable to set the CLR_FUNCTION_LOADER"));
-
+    
     true
 }
 
