@@ -38,9 +38,9 @@ pub extern "C" fn register_method(index: i32, class_name_ptr: *const c_char, met
     let function_loader = common::CLR_FUNCTION_LOADER.get().unwrap_or_else(|| panic!("Unable to get the CLR_FUNCTION_LOADER"));
 
     let function = function_loader.get_function_with_unmanaged_callers_only::<fn(i32, *const c_char, *const c_char, *const c_void)>(
-        netcorehost::pdcstr!("CCB.Internal.Interop"),
+        netcorehost::pdcstr!("CCB.Internal.Interop, CCB"),
         netcorehost::pdcstr!("RegisterMethod"))
         .expect("Unable to register method");
 
-    (*function)(index, class_name_ptr, method_name_ptr, func_ptr)
+    function(index, class_name_ptr, method_name_ptr, func_ptr);
 }
