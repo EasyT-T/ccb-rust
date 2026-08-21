@@ -1,5 +1,3 @@
-use std::ffi::{c_char, c_void};
-
 mod common;
 
 #[unsafe(no_mangle)]
